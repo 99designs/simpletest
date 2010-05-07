@@ -37,7 +37,7 @@ class SimpleTest {
      *    @param string $class        Add a class to ignore.
      */
     static function ignore($class) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         $registry['IgnoreList'][strtolower($class)] = true;
     }
 
@@ -55,7 +55,7 @@ class SimpleTest {
      *    @param array $classes     Class names of interest.
      */
     static function ignoreParentsIfIgnored($classes) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         foreach ($classes as $class) {
             if (SimpleTest::isIgnored($class)) {
                 $reflection = new SimpleReflection($class);
@@ -74,7 +74,7 @@ class SimpleTest {
      *   @see preferred()
      */
     static function prefer($object) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         $registry['Preferred'][] = $object;
     }
 
@@ -90,7 +90,7 @@ class SimpleTest {
         if (! is_array($classes)) {
             $classes = array($classes);
         }
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         for ($i = count($registry['Preferred']) - 1; $i >= 0; $i--) {
             foreach ($classes as $class) {
                 if (SimpleTestCompatibility::isA($registry['Preferred'][$i], $class)) {
@@ -111,7 +111,7 @@ class SimpleTest {
      *    @return boolean             True if should not be run.
      */
     static function isIgnored($class) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return isset($registry['IgnoreList'][strtolower($class)]);
     }
 
@@ -125,7 +125,7 @@ class SimpleTest {
      *    @param string $password  Proxy password for authentication.
      */
     static function useProxy($proxy, $username = false, $password = false) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         $registry['DefaultProxy'] = $proxy;
         $registry['DefaultProxyUsername'] = $username;
         $registry['DefaultProxyPassword'] = $password;
@@ -136,7 +136,7 @@ class SimpleTest {
      *    @return string       Proxy URL.
      */
     static function getDefaultProxy() {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return $registry['DefaultProxy'];
     }
 
@@ -145,7 +145,7 @@ class SimpleTest {
      *    @return string    Proxy username for authentication.
      */
     static function getDefaultProxyUsername() {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return $registry['DefaultProxyUsername'];
     }
 
@@ -154,7 +154,7 @@ class SimpleTest {
      *    @return string    Proxy password for authentication.
      */
     static function getDefaultProxyPassword() {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return $registry['DefaultProxyPassword'];
     }
 
@@ -165,7 +165,7 @@ class SimpleTest {
      *                      to can().
      */
     static function getParsers() {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return $registry['Parsers'];
     }
 
@@ -176,7 +176,7 @@ class SimpleTest {
      *                             to can().
      */
     static function setParsers($parsers) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         $registry['Parsers'] = $parsers;
     }
 
@@ -184,7 +184,7 @@ class SimpleTest {
      *    Accessor for global registry of options.
      *    @return hash           All stored values.
      */
-    protected static function &getRegistry() {
+    protected static function getRegistry() {
         static $registry = false;
         if (! $registry) {
             $registry = SimpleTest::getDefaults();
@@ -210,21 +210,21 @@ class SimpleTest {
      *    @return hash       All registry defaults.
      */
     protected static function getDefaults() {
-        return array(
+        return new ArrayObject(array(
                 'Parsers' => false,
                 'MockBaseClass' => 'SimpleMock',
                 'IgnoreList' => array(),
                 'DefaultProxy' => false,
                 'DefaultProxyUsername' => false,
                 'DefaultProxyPassword' => false,
-                'Preferred' => array(new HtmlReporter(), new TextReporter(), new XmlReporter()));
+                'Preferred' => array(new HtmlReporter(), new TextReporter(), new XmlReporter())));
     }
     
     /**
      *    @deprecated
      */
     static function setMockBaseClass($mock_base) {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         $registry['MockBaseClass'] = $mock_base;
     }
 
@@ -232,7 +232,7 @@ class SimpleTest {
      *    @deprecated
      */
     static function getMockBaseClass() {
-        $registry = &SimpleTest::getRegistry();
+        $registry = SimpleTest::getRegistry();
         return $registry['MockBaseClass'];
     }
 }
