@@ -23,7 +23,7 @@ class TestOfHtmlSaxParserWithDifferentCharset extends UnitTestCase {
         $this->assertEqual($match, utf8_decode("eé"));
     }
 
-    function &createParser() {
+    function createParser() {
         $parser = new MockSimpleHtmlSaxParser();
         $parser->setReturnValue('acceptStartToken', true);
         $parser->setReturnValue('acceptEndToken', true);

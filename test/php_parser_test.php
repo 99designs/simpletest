@@ -289,7 +289,7 @@ class TestOfLexerHandlers extends UnitTestCase {
 
 class TestOfSimpleHtmlLexer extends UnitTestCase {
 
-    function &createParser() {
+    function createParser() {
         $parser = new MockSimpleHtmlSaxParser();
         $parser->setReturnValue('acceptStartToken', true);
         $parser->setReturnValue('acceptEndToken', true);

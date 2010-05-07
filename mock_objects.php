@@ -313,7 +313,7 @@ class SimpleSignatureMap {
      *    @return object              Object held in the first matching
      *                                slot, otherwise null.
      */
-    function &findFirstAction($parameters) {
+    function findFirstAction($parameters) {
         $slot = $this->findFirstSlot($parameters);
         if (isset($slot) && isset($slot['content'])) {
             return $slot['content'];
@@ -350,7 +350,7 @@ class SimpleSignatureMap {
      *                                without wildcards.
      *    @return array               Reference to slot or null.
      */
-    function &findFirstSlot($parameters) {
+    function findFirstSlot($parameters) {
         $count = count($this->map);
         for ($i = 0; $i < $count; $i++) {
             if ($this->map[$i]["params"]->test($parameters)) {

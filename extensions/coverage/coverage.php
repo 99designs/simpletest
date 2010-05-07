@@ -35,7 +35,7 @@ class CodeCoverage  {
         $this->includeUntouchedFiles($untouched);
     }
 
-    function &getTouchedFiles() {
+    function getTouchedFiles() {
         $handler = new CoverageDataHandler($this->log);
         $touched = $handler->getFilenames();
         return $touched;

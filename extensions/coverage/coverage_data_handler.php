@@ -33,7 +33,7 @@ class CoverageDataHandler {
         $this->db->queryExec("create table coverage (name text, coverage text)");
     }
 
-    function &getFilenames() {
+    function getFilenames() {
         $filenames = array();
         $cursor = $this->db->unbufferedQuery("select distinct name from coverage");
         while ($row = $cursor->fetch()) {
@@ -61,7 +61,7 @@ class CoverageDataHandler {
         return $coverage;
     }
 
-    function &readFile($file) {
+    function readFile($file) {
         $sql = "select coverage from coverage where name = '$file'";
         $aggregate = array();
         $result = $this->db->query($sql);
@@ -110,7 +110,7 @@ class CoverageDataHandler {
         $this->db->queryExec($sql);
     }
 
-    function &readUntouchedFiles() {
+    function readUntouchedFiles() {
         $untouched = array();
         $result = $this->db->query("select filename from untouched order by filename");
         while ($result->valid()) {

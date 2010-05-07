@@ -89,7 +89,7 @@ class DetachedTestCase {
      *    @return SimpleTestXmlListener      XML reader.
      *    @access protected
      */
-    protected function &createParser(&$reporter) {
+    protected function createParser(&$reporter) {
         return new SimpleTestXmlParser($reporter);
     }
 }
