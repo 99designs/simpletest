@@ -35,7 +35,7 @@ class TestOfHtmlSaxParserWithDifferentCharset extends UnitTestCase {
     }
 
     function testTagWithAttributesInUTF8() {
-        $parser = &$this->createParser();
+        $parser = $this->createParser();
         $parser->expectOnce('acceptTextToken', array('label', '*'));
         $parser->expectAt(0, 'acceptStartToken', array('<a', '*'));
         $parser->expectAt(1, 'acceptStartToken', array('href', '*'));
@@ -51,7 +51,7 @@ class TestOfHtmlSaxParserWithDifferentCharset extends UnitTestCase {
     }
 
     function testTagWithAttributesInLatin1() {
-        $parser = &$this->createParser();
+        $parser = $this->createParser();
         $parser->expectOnce('acceptTextToken', array('label', '*'));
         $parser->expectAt(0, 'acceptStartToken', array('<a', '*'));
         $parser->expectAt(1, 'acceptStartToken', array('href', '*'));

@@ -68,7 +68,7 @@ class SimpleFrameset {
             $index = $name - 1;
         }
         if (count($path) == 0) {
-            $this->frames[$index] = &$page;
+            $this->frames[$index] = $page;
             return;
         }
         $this->frames[$index]->setFrame($path, $page);

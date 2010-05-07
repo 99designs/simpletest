@@ -1432,7 +1432,7 @@ class MockGenerator {
             }
             $code .= "    " . $this->reflection->getSignature($method) . " {\n";
             $code .= "        \$args = func_get_args();\n";
-            $code .= "        \$result = &\$this->invoke(\"$method\", \$args);\n";
+            $code .= "        \$result = \$this->invoke(\"$method\", \$args);\n";
             $code .= "        return \$result;\n";
             $code .= "    }\n";
         }
@@ -1458,7 +1458,7 @@ class MockGenerator {
             }
             $code .= "    " . $this->reflection->getSignature($method) . " {\n";
             $code .= "        \$args = func_get_args();\n";
-            $code .= "        \$result = &\$this->mock->invoke(\"$method\", \$args);\n";
+            $code .= "        \$result = \$this->mock->invoke(\"$method\", \$args);\n";
             $code .= "        return \$result;\n";
             $code .= "    }\n";
         }

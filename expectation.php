@@ -867,7 +867,7 @@ class MethodExistsExpectation extends SimpleExpectation {
      */
     function __construct($method, $message = '%s') {
         parent::__construct($message);
-        $this->method = &$method;
+        $this->method = $method;
     }
 
     /**

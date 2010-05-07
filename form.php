@@ -160,7 +160,7 @@ class SimpleForm {
         } elseif (strtolower($tag->getAttribute('type')) == 'checkbox') {
             $this->addCheckbox($tag);
         } else {
-            $this->widgets[] = &$tag;
+            $this->widgets[] = $tag;
         }
     }
 

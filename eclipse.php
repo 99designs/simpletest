@@ -28,7 +28,7 @@ class EclipseReporter extends SimpleScorer {
      *    @param boolean $cc        Whether to include test coverage.
      */
     function __construct(&$listener, $cc=false){
-        $this->listener = &$listener;
+        $this->listener = $listener;
         $this->SimpleScorer();
         $this->case = "";
         $this->group = "";
@@ -274,7 +274,7 @@ class EclipseReporter extends SimpleScorer {
  */
 class EclipseInvoker extends SimpleInvokerDecorator{
     function __construct(&$invoker, &$listener) {
-        $this->listener = &$listener;
+        $this->listener = $listener;
         $this->SimpleInvokerDecorator($invoker);
     }
     

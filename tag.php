@@ -913,7 +913,7 @@ class MultipleSelectionTag extends SimpleWidget {
      */
     function addTag($tag) {
         if ($tag->getTagName() == 'option') {
-            $this->options[] = &$tag;
+            $this->options[] = $tag;
         }
     }
 
